@@ -1,0 +1,32 @@
+server:
+  port: ${PORT:8080}
+ 
+spring:
+  application:
+    name: order-fulfillment-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/order_fulfillment_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:placeholder_password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+ 
+cloud:
+  azure:
+    keyvault:
+      secret:
+        property-sources:
+          - endpoint: ${AZURE_KEYVAULT_ENDPOINT:https://order-vault.vault.azure.net/}
+    storage:
+      blob:
+        endpoint: ${AZURE_STORAGE_BLOB_ENDPOINT:https://orderstorage.blob.core.windows.net/}
+ 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+ 
