@@ -1,19 +1,19 @@
-# payment-gateway-service
+# order-fulfillment-service
  
-Core payment orchestration engine handling checkout transactions, tokenization, and webhooks for global web and mobile storefronts.
+Core order orchestration microservice responsible for cart checkout, warehouse dispatch, and invoice generation.
  
 ## Overview & Metadata
-- **Service Owner:** Checkout & Payments Squad (`#team-checkout-core` on Slack)
-- **Business Impact:** Critical (Tier 1 revenue-generating service)
-- **Code Coverage Goal:** 85% minimum enforced on PR merges
+- **Service Owner:** Logistics & Supply Chain Engineering Team (`#eng-logistics-team` on Slack)
+- **Business Impact:** Critical (Tier 1 core customer-facing checkout system)
+- **Code Coverage Goal:** 80% (enforced via JaCoCo in CI gate)
  
 ## Architecture & Integrations
-- **Upstream Dependencies:** Calls internal `Account-Service`, `Tax-Calculation-Service`, and AWS S3.
-- **Downstream Consumers:** Consumed by `Storefront-Web-Client`, `Mobile-Checkout-BFF`, and `Subscription-Worker`.
-- **External APIs:** Stripe API, PayPal REST SDK.
-- **Observability / Logging:** Datadog APM, Winston JSON logger, Splunk log aggregator.
+- **Upstream Dependencies:** Calls internal `inventory-mgmt-service`, `payment-gateway-service`, and `notification-service`.
+- **Downstream Consumers:** Consumed by `web-storefront-bff`, `mobile-app-gateway`, and `warehouse-sync-cron`.
+- **External APIs:** SendGrid Email API, FedEx Shipping REST API.
+- **Observability / Logging:** Datadog APM, Prometheus Actuator metrics, Logstash / ELK stack.
  
 ## Links & Operations
-- **API Documentation:** [Swagger / OpenAPI Hub](https://api-docs.internal.company.com/payment-gateway)
-- **JIRA Project Board:** [PAY-CORE Board](https://jira.internal.company.com/projects/PAY)
-- **On-Call Rotation:** [PagerDuty Escalation Policy](https://pagerduty.internal.company.com/schedules/PAYMENT_OPS)
+- **API Documentation:** [Swagger / OpenAPI UI](https://api-docs.internal.company.com/order-fulfillment/swagger-ui/index.html)
+- **JIRA Project Board:** [LOG-ORDER Board](https://jira.internal.company.com/projects/LOG)
+- **On-Call Rotation:** [PagerDuty Escalation Policy](https://pagerduty.internal.company.com/schedules/LOGISTICS_ONCALL)
